@@ -24,6 +24,7 @@ namespace MonoVehicles.Controllers
             ViewData["CurrentSort"] = sortOrder;
             ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewData["AbrvSortParm"] = sortOrder == "Abrv" ? "abrv_desc" : "Abrv";
+            ViewData["IdSortParm"] = sortOrder == "Id" ? "id_desc" : "Id";
 
             if (searchString != null)
             {
@@ -42,7 +43,8 @@ namespace MonoVehicles.Controllers
             if (!String.IsNullOrEmpty(searchString))
             {
                 vehicleModels = vehicleModels.Where(s => s.Name.Contains(searchString)
-                                       || s.Abrv.Contains(searchString));
+                                       || s.Abrv.Contains(searchString)
+                                       || s.Id.ToString().Contains(searchString));
             }
             // Sorting
             vehicleModels = sortOrder switch
@@ -50,6 +52,8 @@ namespace MonoVehicles.Controllers
                 "name_desc" => vehicleModels.OrderByDescending(v => v.Name),
                 "Abrv" => vehicleModels.OrderBy(s => s.Abrv),
                 "abrv_desc" => vehicleModels.OrderByDescending(v => v.Abrv),
+                "Id" => vehicleModels.OrderBy(s => s.Id),
+                "id_desc" => vehicleModels.OrderByDescending(s => s.Id),
                 _ => vehicleModels.OrderBy(s => s.Name),
             };
             //return View(await _context.VehicleModels.ToListAsync());
