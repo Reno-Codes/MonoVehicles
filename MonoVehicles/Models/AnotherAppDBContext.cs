@@ -23,7 +23,7 @@ namespace MonoVehicles.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=AnotherAppDB;User ID=sa;Password=123456;Connect Timeout=30;Encrypt=False;");
+                optionsBuilder.UseSqlServer("Server=DESKTOP-9T83QA0\\SQLEXPRESS;Database=AnotherAppDB;User ID=sa;Password=123456;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
             }
         }
 
